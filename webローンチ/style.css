@@ -1,0 +1,548 @@
+/* 基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    /* 全体に Noto Sans JP を適用 */
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #fdf6e3;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* タイトル、作品名、ボタンなど、インパクトが欲しい場所を Black(900) に */
+.hero h1,
+.section-title,
+.work-info h3,
+.reserve-btn {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    /* 極太 */
+    letter-spacing: -0.02em;
+    /* 太いフォントは少し文字間を詰めるとカッコよくなります */
+}
+
+/* ヒーロータイトルの調整（チラシの迫力に寄せる） */
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    color: #000;
+    /* よりパキッとさせる */
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ヘッダー全体：リッチなグラデーションとパターン */
+.hero {
+    background-color: #aee4f5;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, #c1efff 0%, #aee4f5 100%);
+    background-size: 30px 30px, 30px 30px, 100% 100%;
+    
+    padding: 60px 20px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+/* タイトル */
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem); /* 画面幅に合わせてサイズが可変 */
+    font-weight: 900;
+    line-height: 1.1;
+    color: #333;
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+}
+
+.hero .subtitle {
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #555;
+    background: rgba(255, 255, 255, 0.4);
+    display: inline-block;
+    padding: 2px 10px;
+    margin-bottom: 40px;
+}
+
+/* レイアウト：PCは横並び、スマホは縦並び */
+.hero-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+}
+
+/* ロゴ */
+.logo-placeholder {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.1);
+    background-image: url('./img/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(-3deg);
+    flex-shrink: 0; /* スマホで潰れないように */
+}
+
+/* ラフスケッチ */
+.hero-sketch img {
+    max-width: 100%; /* 親要素からはみ出さない */
+    width: 400px;
+    height: auto;
+    padding: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
+    transform: rotate(2deg);
+}
+
+/* --- レスポンシブ調整 --- */
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 15px;
+        text-align: center; /* スマホでは中央寄せ */
+    }
+
+    .hero-layout {
+        flex-direction: column; /* 縦並び */
+        align-items: center;
+        gap: 50px;
+    }
+
+    .hero .subtitle {
+        margin-bottom: 30px;
+    }
+
+    .logo-placeholder {
+        width: 160px;
+        height: 160px;
+        transform: rotate(-2deg); /* 傾きを少し抑える */
+    }
+
+    .hero-sketch img {
+        width: 100%;
+        max-width: 320px;
+        padding: 10px;
+        transform: rotate(1deg); /* 傾きを少し抑える */
+    }
+}
+
+
+/* コンセプトセクション */
+.concept {
+    padding: 40px 20px;
+    margin-bottom: 80px;
+    /* カンマを削除し、下の余白を設定 */
+}
+
+.concept-banner {
+    background-color: #aee4f5;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 900;
+    /* Noto Sans JP Blackを活かすため太く */
+
+    /* 中央寄せのポイント */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    /* 下の要素との距離 */
+}
+
+.concept-detail {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.concept-detail h3 {
+    margin-bottom: 20px;
+}
+
+/* 作品紹介セクション全体 */
+.works {
+    padding: 220px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    margin: -120px 0;
+    z-index: 1;
+    
+    /* 要素を縦に並べる設定 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 中央揃え */
+}
+
+/* タイトル（h2） */
+.section-title {
+    margin-bottom: 10px; /* View Moreとの間隔 */
+}
+
+/* View Moreボタン */
+.view-more-btn {
+    /* position: absolute; は削除 */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    
+    /* 右側に寄せたい場合の設定 */
+    align-self: flex-end; /* 親の中央揃えを無視して右に寄せる */
+    margin-right: 10%;    /* 右端からの余白調整 */
+    margin-bottom: 30px;  /* 下の作品グリッドとの間隔 */
+
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    z-index: 10;
+}
+
+.view-more-btn:hover {
+    color: #ffaaaa;
+}
+
+/* 矢印の動き */
+.view-more-btn .arrow {
+    transition: transform 0.3s ease;
+}
+
+.view-more-btn:hover .arrow {
+    transform: translateX(5px);
+    color: #ffaaaa;
+}
+
+/* 白い背景レイヤー */
+.works::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: -10%;
+    width: 120%;
+    height: 90%;
+    background-color: #fdfdfd;
+
+    transform: rotate(-7deg);
+    z-index: -1;
+
+    /* 修正ポイント1：filter をやめて box-shadow (inset) に変更 */
+    /* これにより、ジグザグの内側に沿って影がつきます */
+    box-shadow:
+        inset 0px 40px 30px rgba(0, 0, 0, 0.15),
+        inset 0px -40px 30px rgba(0, 0, 0, 0.15);
+    /* ジグザグマスク */
+    -webkit-mask-image: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M0,0 L0,2 L5,8 L10,2 L15,8 L20,2 L25,8 L30,2 L35,8 L40,2 L45,8 L50,2 L55,8 L60,2 L65,8 L70,2 L75,8 L80,2 L85,8 L90,2 L95,8 L100,2 L100,98 L95,92 L90,98 L85,92 L80,98 L75,92 L70,98 L65,92 L60,98 L55,92 L50,98 L45,92 L40,98 L35,92 L30,98 L25,92 L20,98 L15,92 L10,98 L5,92 L0,98 Z' fill='black' /></svg>");
+    mask-image: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M0,0 L0,2 L5,8 L10,2 L15,8 L20,2 L25,8 L30,2 L35,8 L40,2 L45,8 L50,2 L55,8 L60,2 L65,8 L70,2 L75,8 L80,2 L85,8 L90,2 L95,8 L100,2 L100,98 L95,92 L90,98 L85,92 L80,98 L75,92 L70,98 L65,92 L60,98 L55,92 L50,98 L45,92 L40,98 L35,92 L30,98 L25,92 L20,98 L15,92 L10,98 L5,92 L0,98 Z' fill='black' /></svg>");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+
+}
+
+.works>* {
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    background: #ffaaaa;
+    display: inline-block;
+    padding: 5px 40px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+/* はみ出しを隠す親 */
+.work-scroll-container {
+    overflow: hidden;
+    width: 100%;
+    /* へこんでいる白い部分の中でカードを動かす */
+    padding: 60px 0;
+}
+
+.work-grid {
+    display: flex;
+    gap: 40px;
+    width: max-content; /* カードの枚数分だけ横に長くする */
+    animation: scroll-left 30s linear infinite; /* 左に流れる設定 */
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* 全体の半分（1組分）まで進んだら、一瞬で 0 に戻る */
+        transform: translateX(-50%);
+    }
+}
+
+/* マウスホバーで停止（ゆっくり見たい人のため） */
+.work-grid:hover {
+    animation-play-state: paused;
+}
+
+.work-card {
+    background: white;
+    width: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.work-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #eee;
+}
+
+.work-info {
+    padding: 15px;
+    background-color: #ffbaba;
+    /* ピンクのエリア */
+    text-align: center;
+}
+
+/* 情報セクション */
+.info {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+.info-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.info-list {
+    list-style: none;
+}
+
+.info-photo img {
+    width: 250px;
+    height: 180px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reserve-btn {
+    display: block;
+    width: fit-content;
+    background: #ffeb99;
+    padding: 15px 40px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 10px;
+    margin: 0 auto;
+    font-weight: bold;
+    box-shadow: 0 4px 0 #eed06d;
+    transition: transform 0.1s;
+}
+
+.reserve-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* フッター */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
+
+/* モーダル背景 */
+.modal {
+    display: none; /* 最初は隠す */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+/* モーダル背景 */
+.modal {
+    display: none; /* 最初は隠す */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* 小さい画面での余白確保 */
+}
+
+/* モーダルの外枠（ベージュの額縁とドット） */
+.modal-content {
+    background-color: #fdeec5; /* 外枠の色をベージュに */
+    padding: 20px; /* 額縁の太さ */
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    
+    /* ドット模様の背景 */
+    background-image: 
+        radial-gradient(circle at 50% 50%, #c4b9a1 1px, transparent 1px), /* 内側のドット */
+        radial-gradient(circle at 50% 50%, #c4b9a1 1px, transparent 1px); /* 外側のドット */
+    background-size: 20px 20px; /* ドットの間隔 */
+    background-position: 0 0, 10px 10px; /* ドットの配置をずらす */
+}
+
+/* モーダルの中身（白い紙の部分） */
+.modal-body-inner { /* 新たに追加 */
+    background-color: #fbf9e7; /* 白い中身 */
+    padding: 40px;
+    border-radius: 10px; /* 内側の角丸 */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.05); /* わずかなへこみ影 */
+    position: relative;
+    z-index: 1; /* ドットより手前に */
+}
+
+.close-btn {
+    position: absolute;
+    right: 30px; /* 額縁の厚みを考慮 */
+    top: 20px;   /* 額縁の厚みを考慮 */
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    z-index: 2; /* 閉じるボタンは一番手前に */
+}
+
+/* ここから下は既存デザインを維持しつつ微調整 */
+.modal-body {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.modal-img-area img {
+    width: 350px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+
+.modal-text-area {
+    text-align: left;
+}
+
+#modalTitle {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+#modalAuthor {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    border-bottom: 2px solid #ffaaaa;
+    display: inline-block;
+}
+
+#modalTag {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    display: inline-block;
+    background-color: rgb(254, 195, 152);
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#modalDesc {
+    line-height: 1.8;
+}
+
+.snsicons a img {
+    height: 40px;
+    width: 40px;
+    margin: 0 10px;
+}
+
+.snsicons a i{
+    height: 40px;
+    width: 40px;
+    margin: 0 10px;
+    font-size: 50px;
+}
+
+
+/* スマホ対応：縦並びにする */
+@media (max-width: 768px) {
+    .modal-body { flex-direction: column; }
+    .modal-img-area img { width: 100%; }
+    .modal-content { padding: 15px; } /* 額縁を薄く */
+    .modal-body-inner { padding: 20px; } /* 内側の余白も調整 */
+    .close-btn { right: 15px; top: 5px; font-size: 30px; }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .info-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-layout {
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+.map-container {
+  width: 100%;             /* 横幅を親要素いっぱいに */
+  aspect-ratio: 4 / 3;    /* 元のサイズ（400:300）に合わせて 4:3 を指定 */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+}
