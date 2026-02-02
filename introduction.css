@@ -1,0 +1,347 @@
+/* 基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    /* 全体に Noto Sans JP を適用 */
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #fdf6e3;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* タイトル、作品名、ボタンなど、インパクトが欲しい場所を Black(900) に */
+.section-title,
+.work-info h3,
+.reserve-btn {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    /* 極太 */
+    letter-spacing: -0.02em;
+    /* 太いフォントは少し文字間を詰めるとカッコよくなります */
+}
+
+/* 作品紹介セクション全体 */
+.works {
+    padding: 220px 20px;
+    text-align: center;
+    position: relative;
+    /* overflow: hidden; が影を消している原因の場合があるため注意 */
+    overflow: hidden;
+    background-color: transparent;
+    margin: -120px 0;
+    z-index: 1;
+}
+
+.works>* {
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    background: #ffaaaa;
+    display: inline-block;
+    padding: 5px 40px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+
+/* グリッドレイアウト化 */
+.work-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px 0;
+    justify-items: center; /* カードを中央寄せ */
+    justify-content: center;
+}
+
+/* カードデザインはそのまま（念のため） */
+.work-card {
+    cursor: pointer;
+}
+
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* 全体の半分（1組分）まで進んだら、一瞬で 0 に戻る */
+        transform: translateX(-50%);
+    }
+}
+
+
+.work-card {
+    background: white;
+    width: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.work-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #eee;
+}
+
+.work-info {
+    padding: 15px;
+    background-color: #ffbaba;
+    /* ピンクのエリア */
+    text-align: center;
+}
+
+/* 情報セクション */
+.info {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+.info-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.info-list {
+    list-style: none;
+}
+
+.info-photo img {
+    width: 250px;
+    height: 180px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reserve-btn {
+    display: block;
+    width: fit-content;
+    background: #ffeb99;
+    padding: 15px 40px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 10px;
+    margin: 0 auto;
+    font-weight: bold;
+    box-shadow: 0 4px 0 #eed06d;
+    transition: transform 0.1s;
+}
+
+.reserve-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+
+/* モーダル背景 */
+.modal {
+    display: none; /* 最初は隠す */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+/* モーダル背景 */
+.modal {
+    display: none; /* 最初は隠す */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* 小さい画面での余白確保 */
+}
+
+/* モーダルの外枠（ベージュの額縁とドット） */
+.modal-content {
+    background-color: #fdeec5; /* 外枠の色をベージュに */
+    padding: 20px; /* 額縁の太さ */
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    
+    /* ドット模様の背景 */
+    background-image: 
+        radial-gradient(circle at 50% 50%, #c4b9a1 1px, transparent 1px), /* 内側のドット */
+        radial-gradient(circle at 50% 50%, #c4b9a1 1px, transparent 1px); /* 外側のドット */
+    background-size: 20px 20px; /* ドットの間隔 */
+    background-position: 0 0, 10px 10px; /* ドットの配置をずらす */
+}
+
+/* モーダルの中身（白い紙の部分） */
+.modal-body-inner {  /* 新たに追加*/
+    background-color: #fbf9e7; /* 白い中身*/
+    padding: 40px;
+    border-radius: 10px; /*内側の角丸 */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.05); /*わずかなへこみ影 */
+    position: relative;
+    z-index: 1; /*ドットより手前に*/
+}
+
+.close-btn {
+    position: absolute;
+    right: 30px; /* 額縁の厚みを考慮 */
+    top: 20px;   /* 額縁の厚みを考慮 */
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    z-index: 2; /* 閉じるボタンは一番手前に */
+}
+
+/* ここから下は既存デザインを維持しつつ微調整 */
+.modal-body {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.modal-img-area img {
+    width: 350px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+
+.modal-text-area {
+    text-align: left;
+}
+
+#modalTitle {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+#modalAuthor {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    border-bottom: 2px solid #ffaaaa;
+    display: inline-block;
+}
+
+#modalTag {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    display: inline-block;
+    background-color: rgb(254, 195, 152);
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#modalDesc {
+    line-height: 1.8;
+}
+
+/* 戻るボタン */
+#back a{
+     /* 右側に寄せたい場合の設定 */
+    margin-left: 80%;
+    margin-bottom: 30px;
+    background: #aee4f5;
+    display: inline-block;
+    padding: 5px 40px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 3;
+}
+
+/* フッター */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
+
+.snsicons a img {
+    height: 40px;
+    width: 40px;
+    margin: 0 10px;
+}
+
+.snsicons a i{
+    height: 40px;
+    width: 40px;
+    margin: 0 10px;
+    font-size: 50px;
+}
+
+
+/* スマホ対応：縦並びにする */
+@media (max-width: 768px) {
+    .modal-body { flex-direction: column; }
+    .modal-img-area img { width: 100%; }
+    .modal-content { padding: 15px; } /* 額縁を薄く */
+    .modal-body-inner { padding: 20px; } /* 内側の余白も調整 */
+    .close-btn { right: 15px; top: 5px; font-size: 30px; }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .info-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-layout {
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+        gap: 16px;
+    }
+}
+
+.map-container {
+  width: 100%;             /* 横幅を親要素いっぱいに */
+  aspect-ratio: 4 / 3;    /* 元のサイズ（400:300）に合わせて 4:3 を指定 */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+}

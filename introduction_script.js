@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
         
         // 無限ループ用に2セット分（31人×2 = 62枚）を連結
-        workGrid.innerHTML = cards + cards;
+        workGrid.innerHTML = cards;
     }
 
     // 2. モーダルを開く（グローバルに関数を公開）
@@ -82,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modalTag').innerText = data.tag;
 
         modal.style.display = 'flex';
-        // 背景スクロールを防止
-        document.body.style.overflow = 'hidden';
     };
 
     // 3. モーダルを閉じる
@@ -97,8 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal() {
         modal.style.display = 'none';
-        // 背景スクロールを再開
-        document.body.style.overflow = 'auto';
     }
 
     // 実行

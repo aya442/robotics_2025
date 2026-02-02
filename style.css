@@ -23,7 +23,6 @@ body {
     font-weight: 900;
     /* 極太 */
     letter-spacing: -0.02em;
-    /* 太いフォントは少し文字間を詰めるとカッコよくなります */
 }
 
 /* ヒーロータイトルの調整（チラシの迫力に寄せる） */
@@ -231,7 +230,8 @@ body {
     color: #ffaaaa;
 }
 
-/* 白い背景レイヤー */
+/* 白い背景レイヤー*/
+
 .works::before {
     content: '';
     position: absolute;
@@ -292,7 +292,7 @@ body {
     }
     100% {
         /* 全体の半分（1組分）まで進んだら、一瞬で 0 に戻る */
-        transform: translateX(-50%);
+        transform: translateX(-20%);
     }
 }
 

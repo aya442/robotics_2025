@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ロボの手も借りたい展</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="introduction.css">
+    <script src="introduction_script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+
+    <section class="works">
+        <h2 class="section-title">作品紹介</h2>
+
+        <div class="work-scroll-container">
+            <div id="workGrid" class="work-grid"></div>
+        </div>
+    </section>
+
+    <div id="workModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-body-inner">
+                <div class="modal-body">
+                    <div class="modal-img-area">
+                        <img id="modalImg" src="" alt="">
+                    </div>
+                    <div class="modal-text-area">
+                        <h2 id="modalTitle">作品タイトル</h2>
+                        <p id="modalAuthor">制作者名</p>
+                        <p id="modalTag">タグ</p>
+                        <div id="modalDesc">作品の説明がここに入ります。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="back">
+        <a href="index.html">ホームに戻る</a>
+    </div>
+
+
+    <footer>
+        <div class="snsicons">
+            <a href="https://www.instagram.com/saitama_it_web/"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+            <a href="https://x.com/ITWEB15"><i class="fa-brands fa-x-twitter" style="color: #ffffff;"></i></a>
+            <a href="https://www.tiktok.com/@saitama_it_web"><i class="fa-brands fa-tiktok" style="color: #ffffff;"></i></a>
+            <div class="copyright">©2025 students</div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
